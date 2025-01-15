@@ -15,17 +15,19 @@ namespace Geo.Common.Public
         [SerializeField]
         private Animation _animation;
 
-        public async Task ShowAwait(Camera camera, int count)
+        public float GetAnimationDuratiion() => _animation.clip.length;
+
+        public void PlayAnimation(Camera camera, int countCoins)
         {
             _canvas.worldCamera = camera;
-            _rewardText.text = count.ToString();
-
+            _rewardText.text = countCoins.ToString();
             _animation.Play();
+            Invoke(nameof(SelfDestroy), GetAnimationDuratiion());
+        }
 
-            while (_animation.isPlaying)
-            {
-                await Task.Yield();
-            }
+        private void SelfDestroy()
+        {
+            Destroy(gameObject);
         }
     }
 }

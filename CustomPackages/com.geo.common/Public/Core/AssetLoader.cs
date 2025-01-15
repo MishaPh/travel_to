@@ -5,9 +5,9 @@ using UnityEngine.AddressableAssets;
 using Geo.Common.Internal;
 using UnityEngine.Pool;
 
-namespace Geo.Common.Public
+namespace Geo.Common.Public.Core
 {
-    public class AssetLoader : IAssetLoader
+    public sealed class AssetLoader : IAssetLoader
     {
         private readonly Dictionary<string, ICachedAsset> _cache = new();
 

@@ -5,7 +5,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Geo.Common.Internal;
 
-namespace Geo.Common.Public
+namespace Geo.Common.Public.Core
 {
     internal class CachedAsset<TObject> : ICachedAsset where TObject : Object
     {
@@ -40,5 +40,4 @@ namespace Geo.Common.Public
             Addressables.Release(_handle);
         }
     }
-
 }

@@ -5,19 +5,18 @@ using UnityEngine;
 
 namespace Geo.Common.Public
 {
-    public class Player : MonoBehaviour, IUnit
+    public sealed class Player : MonoBehaviour, IUnit
     {
         [SerializeField]
         private Animation _animation;
         [SerializeField]
         private ParticleSystem _hitPs;
 
-        public int CurrnetIndex { get; private set; }
-        public int Score { get; private set; }
+        public float JumpPower = 0.5f;
 
         private void PlayJumpAnimation()
         {
-            _animation.Play("PlayerJump");
+            _animation.Play();
         }
 
         private void PlayHit()
@@ -25,22 +24,12 @@ namespace Geo.Common.Public
             _hitPs.Play();
         }
 
-        public void AddScore(int score)
-        {
-            Score += score;
-        }
-
-        public void SetIndex(int value)
-        {
-            CurrnetIndex = value;
-        }
-
         public Task MoveToAsync(Vector3 position, float duration = 0.3f)
         {
             PlayJumpAnimation();
 
             return transform
-                .DOLocalJump(position, 0.5f, 1, duration)
+                .DOLocalJump(position, JumpPower, 1, duration)
                 .SetEase(Ease.OutSine)
                 .OnComplete(PlayHit).AsyncWaitForCompletion();
         }
@@ -51,6 +40,11 @@ namespace Geo.Common.Public
                .DOBlendableRotateBy(new Vector3(0, 180, 0), 0.4f)
                .SetEase(Ease.OutQuad)
                .AsyncWaitForCompletion();
+        }
+
+        public void TeleportTo(Vector3 position)
+        {
+            transform.position = position;
         }
     }
 }

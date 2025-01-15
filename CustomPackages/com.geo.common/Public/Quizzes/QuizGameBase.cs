@@ -5,11 +5,14 @@ using Geo.Common.Public.Screens;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Geo.Common.Public.QuizGames
 {
     public abstract class QuizGameBase : IQuizGame
     {
+        private const float WaitBeforeAnswer = 0.3f;
+
         protected readonly IAssetLoader _loader;
         protected readonly ScreenFactory _screenFactory;
 
@@ -17,8 +20,9 @@ namespace Geo.Common.Public.QuizGames
 
         protected abstract IAssetCacheTag CacheTag { get;}
 
-        private Action _onClose;
+        private Action<QuizGameResult> _onClose;
         private QuizScreenBase _gameScreen;
+        private QuizGameResult _result;
 
         protected QuizGameBase(IAssetLoader assetLoader, ScreenFactory screenFactory)
         {
@@ -31,7 +35,7 @@ namespace Geo.Common.Public.QuizGames
             _gameScreen = await CreateGameScreenAsync();
         }
 
-        public void PlayQuiz(QuizData quizData, Action finished)
+        public void PlayQuiz(QuizData quizData, Action<QuizGameResult> finished)
         {
             _onClose = finished;
             _gameScreen.ShowAsync(quizData, OnFinisQuiz, _cancellationTokenSource.Token).Forget();
@@ -41,19 +45,22 @@ namespace Geo.Common.Public.QuizGames
         {
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
-            _onClose?.Invoke();
+            _onClose?.Invoke(_result);
         }
 
         protected abstract Task<QuizScreenBase> CreateGameScreenAsync();
         protected abstract Task<QuizFinishScreenBase> CreateFinishScreenAsync();
 
-        private void OnFinisQuiz(QuizResult result)
+        private void OnFinisQuiz(QuizGameResult result)
         {
+            _result = result;
             ShowFinisQuizAsync(result, _cancellationTokenSource.Token).Forget();
         }
 
-        private async Task ShowFinisQuizAsync(QuizResult result, CancellationToken token)
+        private async Task ShowFinisQuizAsync(QuizGameResult result, CancellationToken token)
         {
+            await Task.Delay(Mathf.RoundToInt(1000 * WaitBeforeAnswer), token);
+
             var finishScreen = await CreateFinishScreenAsync();
 
             await finishScreen.ShowResultAsync(result, token);

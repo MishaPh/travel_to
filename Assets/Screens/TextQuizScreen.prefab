@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 5762962183436285374}
   - component: {fileID: 3389316184569384585}
   - component: {fileID: 8874079170898883578}
+  - component: {fileID: 510723080340672156}
   m_Layer: 5
   m_Name: TextQuizScreen
   m_TagString: Untagged
@@ -144,6 +145,22 @@ MonoBehaviour:
   - {fileID: 8639551888839921640}
   - {fileID: 4145235395818415258}
   _questionText: {fileID: 6790010144491963535}
+--- !u!111 &510723080340672156
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222132705663447533}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6d7edc38ee45d024b935cbbb9148e062, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6d7edc38ee45d024b935cbbb9148e062, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &2332910478946770058
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.12452207}
   m_AnchorMax: {x: 1, y: 0.5768153}
-  m_AnchoredPosition: {x: -1.09552, y: -1.9071045}
+  m_AnchoredPosition: {x: -1.0957031, y: -1.9071045}
   m_SizeDelta: {x: -38.092, y: -3.8143}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7064756091515445276

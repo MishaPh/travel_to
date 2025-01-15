@@ -24,47 +24,47 @@ MonoBehaviour:
   - {x: 1, y: 0}
   Spaces:
   - Position: {x: 0, y: 0, z: 0}
-    Space: 3
+    Space: 0
   - Position: {x: -0.5, y: 0, z: 0}
     Space: 0
   - Position: {x: -1, y: 0, z: 0}
-    Space: 0
+    Space: 2
   - Position: {x: -1.5, y: 0, z: 0}
     Space: 0
   - Position: {x: -2, y: 0, z: 0}
     Space: 0
   - Position: {x: -2, y: 0, z: 0.5}
-    Space: 0
+    Space: 1
   - Position: {x: -2, y: 0, z: 1}
     Space: 0
   - Position: {x: -1.5, y: 0, z: 1}
-    Space: 0
+    Space: 2
   - Position: {x: -1, y: 0, z: 1}
     Space: 0
   - Position: {x: -0.5, y: 0, z: 1}
-    Space: 0
+    Space: 2
   - Position: {x: -0.5, y: 0, z: 1.5}
     Space: 0
   - Position: {x: -0.5, y: 0, z: 2}
     Space: 0
   - Position: {x: -1, y: 0, z: 2}
-    Space: 3
+    Space: 1
   - Position: {x: -1.5, y: 0, z: 2}
     Space: 0
   - Position: {x: -2, y: 0, z: 2}
-    Space: 0
+    Space: 1
   - Position: {x: -2, y: 0, z: 2.5}
-    Space: 3
+    Space: 2
   - Position: {x: -2, y: 0, z: 3}
     Space: 0
   - Position: {x: -1.5, y: 0, z: 3}
     Space: 0
   - Position: {x: -1, y: 0, z: 3}
-    Space: 0
+    Space: 1
   - Position: {x: -0.5, y: 0, z: 3}
     Space: 0
   - Position: {x: 0.000000059604645, y: 0, z: 3}
-    Space: 3
+    Space: 2
   - Position: {x: 0.49999994, y: 0, z: 3}
     Space: 0
   - Position: {x: 1, y: 0, z: 3}
@@ -72,14 +72,14 @@ MonoBehaviour:
   - Position: {x: 1, y: 0, z: 2.5}
     Space: 0
   - Position: {x: 1, y: 0, z: 2}
-    Space: 0
+    Space: 1
   - Position: {x: 1, y: 0, z: 1.5}
     Space: 0
   - Position: {x: 1, y: 0, z: 0.99999994}
-    Space: 3
+    Space: 1
   - Position: {x: 1, y: 0, z: 0.50000006}
     Space: 0
   - Position: {x: 1, y: 0, z: 0}
-    Space: 0
+    Space: 2
   - Position: {x: 0.5, y: 0, z: 0}
     Space: 0

@@ -5,10 +5,10 @@ namespace Geo.Common.Internal.Boards
     public readonly struct BoardResult
     {
         public readonly int Roll;
-        public readonly List<int> Indexes;
+        public readonly int[] Indexes;
         public readonly SpaceInfo HitInfo;
 
-        public BoardResult(int roll, List<int> indexes, SpaceInfo hitInfo) : this()
+        public BoardResult(int roll, int[] indexes, SpaceInfo hitInfo) : this()
         {
             Roll = roll;
             Indexes = indexes;

@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using Geo.Common.Internal.Quizzes;
+using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Geo.Common.Public.Screens
         protected GameObject _loseText;
 
         public bool Completed { get; protected set; }
-        public abstract Task ShowResultAsync(QuizResult quizResult, CancellationToken token);
+        public abstract Task ShowResultAsync(QuizGameResult quizResult, CancellationToken token);
 
         protected async Task WaitForClickAsync(CancellationToken token)
         {

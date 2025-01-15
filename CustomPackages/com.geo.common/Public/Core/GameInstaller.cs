@@ -5,7 +5,7 @@ using Geo.Common.Public.Screens;
 using UnityEngine;
 using Zenject;
 
-namespace Geo.Common.Public
+namespace Geo.Common.Public.Core
 {
     public class GameInstaller : MonoInstaller
     {
@@ -20,6 +20,7 @@ namespace Geo.Common.Public
             Container.Bind<IImageAssetManager>().To<ImageAssetManager>().AsSingle();
             Container.Bind<IQuizManager>().To<QuizManager>().AsSingle();
             Container.Bind<IQuizGameFactory>().To<QuizGameFactory>().AsSingle();
+            Container.Bind<IUserStorage>().To<UserStorage>().AsSingle();
             Container.Bind<ScreenFactory>().AsSingle();
             
             Container.BindInstance(_tileCollection).IfNotBound();

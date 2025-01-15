@@ -1,4 +1,5 @@
 ﻿using Geo.Common.Internal;
+using Geo.Common.Internal.Quizzes;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -22,7 +23,7 @@ namespace Geo.Common.Public.Screens
             _manager = manager;
         }
 
-        public override async Task ShowResultAsync(QuizResult quizResult, CancellationToken token)
+        public override async Task ShowResultAsync(QuizGameResult quizResult, CancellationToken token)
         {
             var answer = quizResult.QuizData.Answers[quizResult.QuizData.CorrectAnswerIndex];
 

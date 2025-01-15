@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Geo.Common.Internal.Utils
 {
+
     public static class TaskExtensions
     {
         public static void Forget(this Task task)

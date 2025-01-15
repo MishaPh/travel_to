@@ -15,6 +15,8 @@ namespace Geo.Common.Public.Screens
         [SerializeField]
         private TextMeshProUGUI _coinsText;
 
+        private int _coins;
+
         public event Action OnRoll;
 
         private void Awake()
@@ -34,12 +36,13 @@ namespace Geo.Common.Public.Screens
 
         public void SetCoins(int value)
         {
+            _coins = value;
             _coinsText.text = value.ToString();
         }
 
-        public void AnimateCoins(int from, int to)
+        public void AnimateCoinsTo(int to)
         {
-            StartCoroutine(AnimateCoinsCorroutine(from, to));
+            StartCoroutine(AnimateCoinsCorroutine(_coins, to));
         }
 
         private IEnumerator AnimateCoinsCorroutine(int from, int to)

@@ -9,5 +9,4 @@ namespace Geo.Common.Internal
         Task<TObject> LoadAsync<TObject>(AssetReferenceT<TObject> reference, params IAssetCacheTag[] tags) where TObject : Object;
         void ClearCacheForTags(params IAssetCacheTag[] tags);
     }
-
 }

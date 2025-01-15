@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Geo.Common.Internal.Boards;
 using UnityEngine;
 
 namespace Geo.Common.Public
@@ -10,7 +11,7 @@ namespace Geo.Common.Public
         [SerializeField]
         private ParticleSystem _psHit;
         [SerializeField]
-        private Vector2 _scaleRange = new Vector2(0.8f, 1.0f);
+        private Vector2 _scaleRange = new (0.8f, 1.0f);
 
         private void Start()
         {

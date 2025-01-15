@@ -2,6 +2,7 @@
 using Geo.Common.Internal.Quizzes;
 using Geo.Common.Internal.Utils;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
@@ -13,8 +14,6 @@ namespace Geo.Common.Public.Screens
 {
     public sealed class TextQuizScreen : QuizScreenBase
     {
-        private const float WaitBeforeAnswer = 0.3f;
-
         private IAssetLoader _loader;
         private IImageAssetManager _manager;
 
@@ -24,12 +23,12 @@ namespace Geo.Common.Public.Screens
         private AspectRatioFitter _imageAspectRatioFitter;
 
         [SerializeField]
-        private TextQuizItem[] _items;
+        private List<TextQuizItem> _items;
 
         [SerializeField]
         private TextMeshProUGUI _questionText;
 
-        private Action<QuizResult> _onResult;
+        private Action<QuizGameResult> _onResult;
         private QuizData _data;
         
         [Inject]
@@ -39,11 +38,12 @@ namespace Geo.Common.Public.Screens
             _manager = manager;
         }
 
-        public override async Task ShowAsync(QuizData data, Action<QuizResult> resultCallback, CancellationToken token)
+        public override async Task ShowAsync(QuizData data, Action<QuizGameResult> resultCallback, CancellationToken token)
         {
             _data = data;
             _questionText.text = data.Question;
             _onResult = resultCallback;
+            _items.Shuffle();
 
             var asset = _manager.GetImageReference(data.CustomImageID);
             if (asset != null)
@@ -52,14 +52,14 @@ namespace Geo.Common.Public.Screens
                 SetImageSprite(sprite);
             }
 
-            for (var i = 0; i < Mathf.Min(data.Answers.Length, _items.Length); i++)
+            for (var i = 0; i < Mathf.Min(data.Answers.Length, _items.Count); i++)
             {
                 if (token.IsCancellationRequested)
                     break;
 
                 var answerIndex = i;
                 _items[i].Show(data.Answers[i].Text);
-                _items[i].OnClick = () => { AnswerAsync(answerIndex, token).Forget(); };
+                _items[i].OnClick = () => { ReceiveAnswer(answerIndex); };
             }
         }
 
@@ -74,15 +74,9 @@ namespace Geo.Common.Public.Screens
             _imageAspectRatioFitter.aspectRatio = size.x / size.y;
         }
 
-        private async Task AnswerAsync(int value, CancellationToken token)
+        private void ReceiveAnswer(int value)
         {
-            if (token.IsCancellationRequested)
-                return;
-
-            for (var i = 0; i < _items.Length; i++)
-            {
-                _items[i].OnClick = null;
-            }
+            _items.ForEach(item => item.OnClick = null);
 
             var win = value == _data.CorrectAnswerIndex;
             if (win)
@@ -90,9 +84,7 @@ namespace Geo.Common.Public.Screens
             else
                 _items[value].ShowFail();
 
-            await Task.Delay(Mathf.RoundToInt(1000 * WaitBeforeAnswer), token);
-
-            _onResult?.Invoke(new QuizResult(_data, win));
+            _onResult?.Invoke(new QuizGameResult(_data, win));
         }
     }
 }

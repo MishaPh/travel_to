@@ -7,6 +7,6 @@ namespace Geo.Common.Public.Screens
 {
     public abstract class QuizScreenBase : ScreenBase
     {
-        public abstract Task ShowAsync(QuizData data, Action<QuizResult> resultCallback, CancellationToken token);
+        public abstract Task ShowAsync(QuizData data, Action<QuizGameResult> resultCallback, CancellationToken token);
     }
 }

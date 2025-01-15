@@ -17,16 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: bfdd4184e115d964e97fc0daf679118d
   m_SerializeEntries:
-  - m_GUID: a5a2bd7af6d582144b71985c7b7bd133
-    m_Address: Assets/Data/BoardDataLong.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d4687c09bacd123498e1eab89a35d1a8
-    m_Address: Assets/Data/BoardDataShort.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b3caa96877aadb246befbf35272d7803
     m_Address: Assets/ScriptableObjects/QuizCollection.asset
     m_ReadOnly: 0

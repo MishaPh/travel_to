@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.7177124, y: -289.16}
+  m_AnchoredPosition: {x: -3.7177734, y: -289.16}
   m_SizeDelta: {x: -5.6823, y: 360.1079}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2877664576416535408
@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 8171338989189003574}
   - component: {fileID: 2749499591263809011}
   - component: {fileID: -1710502423755451467}
+  - component: {fileID: 8602507678609405373}
   m_Layer: 5
   m_Name: FlagQuizScreen
   m_TagString: Untagged
@@ -214,6 +215,22 @@ MonoBehaviour:
   - {fileID: 1352258145706117236}
   - {fileID: 5060146281559764415}
   _questionText: {fileID: 8922090231645136437}
+--- !u!111 &8602507678609405373
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3209648310839581554}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 391de6431372cb34fa9a85bfa01e00c2, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 391de6431372cb34fa9a85bfa01e00c2, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &3221788275407541556
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +328,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 32
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 214, y: 152}
@@ -565,7 +582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.062000003, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.92707, y: -403}
+  m_AnchoredPosition: {x: 0.927063, y: -403}
   m_SizeDelta: {x: -32.783905, y: 207.67322}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &7351544151967031937
@@ -719,7 +736,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.12452207}
   m_AnchorMax: {x: 1, y: 0.5768153}
-  m_AnchoredPosition: {x: -1.5488892, y: -0.8075104}
+  m_AnchoredPosition: {x: -1.5488281, y: -0.8075104}
   m_SizeDelta: {x: -38.9985, y: -1.6149998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2255607427666764668

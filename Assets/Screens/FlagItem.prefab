@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 1952925846027679166}
   - component: {fileID: 3280316566243622990}
   - component: {fileID: 8427694768345464247}
+  - component: {fileID: -7703101697089343306}
   m_Layer: 5
   m_Name: FlagItem
   m_TagString: Untagged
@@ -545,3 +546,18 @@ MonoBehaviour:
   _icon: {fileID: 687426563646503480}
   _borderFail: {fileID: 6845517338986366782}
   _borderSucced: {fileID: 7990667671850465886}
+--- !u!111 &-7703101697089343306
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417105365627561561}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

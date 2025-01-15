@@ -13,65 +13,61 @@ MonoBehaviour:
   m_Name: BoardDataMiddle
   m_EditorClassIdentifier: 
   Points:
-  - {x: -2, y: 0}
-  - {x: -2, y: 1}
+  - {x: 0, y: 0}
+  - {x: -1, y: 0}
   - {x: -1, y: 1}
-  - {x: -1, y: 2.5}
-  - {x: -2, y: 2.5}
-  - {x: -2, y: 4}
-  - {x: -1, y: 4}
-  - {x: -1, y: 5}
-  - {x: 0.5, y: 5}
+  - {x: -1, y: 1.5}
+  - {x: -2, y: 1.5}
+  - {x: -2, y: 3.5}
+  - {x: -1, y: 3.5}
+  - {x: -1, y: 4.5}
+  - {x: 0.5, y: 4.5}
   - {x: 0.5, y: 3.5}
   - {x: 1.5, y: 3.5}
-  - {x: 1.5, y: 2.5}
-  - {x: 2.5, y: 2.5}
+  - {x: 1.5, y: 2}
+  - {x: 2.5, y: 2}
   - {x: 2.5, y: 3}
   - {x: 3.5, y: 3}
   - {x: 3.5, y: 1}
   - {x: 1, y: 1}
   - {x: 1, y: 0}
   Spaces:
-  - Position: {x: -2, y: 0, z: 0}
+  - Position: {x: 0, y: 0, z: 0}
     Space: 0
-  - Position: {x: -2, y: 0, z: 0.5}
-    Space: 2
-  - Position: {x: -2, y: 0, z: 1}
-    Space: 2
-  - Position: {x: -1.5, y: 0, z: 1}
+  - Position: {x: -0.5, y: 0, z: 0}
+    Space: 1
+  - Position: {x: -1, y: 0, z: 0}
+    Space: 0
+  - Position: {x: -1, y: 0, z: 0.5}
     Space: 0
   - Position: {x: -1, y: 0, z: 1}
     Space: 0
   - Position: {x: -1, y: 0, z: 1.5}
     Space: 0
-  - Position: {x: -1, y: 0, z: 2}
+  - Position: {x: -1.5, y: 0, z: 1.5}
     Space: 1
-  - Position: {x: -1, y: 0, z: 2.5}
+  - Position: {x: -2, y: 0, z: 1.5}
     Space: 0
-  - Position: {x: -1.5, y: 0, z: 2.5}
-    Space: 2
+  - Position: {x: -2, y: 0, z: 2}
+    Space: 1
   - Position: {x: -2, y: 0, z: 2.5}
-    Space: 0
-  - Position: {x: -2, y: 0, z: 3}
-    Space: 1
-  - Position: {x: -2, y: 0, z: 3.5}
     Space: 2
-  - Position: {x: -2, y: 0, z: 4}
+  - Position: {x: -2, y: 0, z: 3}
     Space: 0
-  - Position: {x: -1.5, y: 0, z: 4}
+  - Position: {x: -2, y: 0, z: 3.5}
+    Space: 0
+  - Position: {x: -1.5, y: 0, z: 3.5}
+    Space: 1
+  - Position: {x: -1, y: 0, z: 3.5}
     Space: 0
   - Position: {x: -1, y: 0, z: 4}
     Space: 0
   - Position: {x: -1, y: 0, z: 4.5}
     Space: 0
-  - Position: {x: -1, y: 0, z: 5}
+  - Position: {x: -0.5, y: 0, z: 4.5}
     Space: 0
-  - Position: {x: -0.5, y: 0, z: 5}
+  - Position: {x: 0.000000029802322, y: 0, z: 4.5}
     Space: 0
-  - Position: {x: 0.000000029802322, y: 0, z: 5}
-    Space: 0
-  - Position: {x: 0.5, y: 0, z: 5}
-    Space: 1
   - Position: {x: 0.5, y: 0, z: 4.5}
     Space: 0
   - Position: {x: 0.5, y: 0, z: 4}
@@ -79,15 +75,19 @@ MonoBehaviour:
   - Position: {x: 0.5, y: 0, z: 3.5}
     Space: 0
   - Position: {x: 1, y: 0, z: 3.5}
-    Space: 2
+    Space: 0
   - Position: {x: 1.5, y: 0, z: 3.5}
     Space: 0
   - Position: {x: 1.5, y: 0, z: 3}
-    Space: 0
+    Space: 1
   - Position: {x: 1.5, y: 0, z: 2.5}
     Space: 0
-  - Position: {x: 2, y: 0, z: 2.5}
-    Space: 1
+  - Position: {x: 1.5, y: 0, z: 2}
+    Space: 2
+  - Position: {x: 2, y: 0, z: 2}
+    Space: 0
+  - Position: {x: 2.5, y: 0, z: 2}
+    Space: 0
   - Position: {x: 2.5, y: 0, z: 2.5}
     Space: 0
   - Position: {x: 2.5, y: 0, z: 3}
@@ -97,34 +97,26 @@ MonoBehaviour:
   - Position: {x: 3.5, y: 0, z: 3}
     Space: 0
   - Position: {x: 3.5, y: 0, z: 2.5}
-    Space: 0
+    Space: 2
   - Position: {x: 3.5, y: 0, z: 2}
     Space: 0
   - Position: {x: 3.5, y: 0, z: 1.5}
     Space: 0
   - Position: {x: 3.5, y: 0, z: 1}
-    Space: 0
+    Space: 1
   - Position: {x: 3, y: 0, z: 1}
-    Space: 0
+    Space: 2
   - Position: {x: 2.5, y: 0, z: 1}
     Space: 0
   - Position: {x: 2, y: 0, z: 1}
-    Space: 1
+    Space: 0
   - Position: {x: 1.5, y: 0, z: 1}
-    Space: 0
+    Space: 2
   - Position: {x: 1, y: 0, z: 1}
-    Space: 0
+    Space: 1
   - Position: {x: 1, y: 0, z: 0.5}
     Space: 0
   - Position: {x: 1, y: 0, z: 0}
-    Space: 2
+    Space: 0
   - Position: {x: 0.5, y: 0, z: 0}
     Space: 1
-  - Position: {x: -0.000000029802322, y: 0, z: 0}
-    Space: 2
-  - Position: {x: -0.5, y: 0, z: 0}
-    Space: 0
-  - Position: {x: -1, y: 0, z: 0}
-    Space: 0
-  - Position: {x: -1.5, y: 0, z: 0}
-    Space: 0

@@ -1,11 +1,12 @@
-﻿using System.Threading;
+﻿using Geo.Common.Internal.Quizzes;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Geo.Common.Public.Screens
 {
     public sealed class TextQuizFinishScreen : QuizFinishScreenBase
     {
-        public override async Task ShowResultAsync(QuizResult quizResult, CancellationToken token)
+        public override async Task ShowResultAsync(QuizGameResult quizResult, CancellationToken token)
         {
             var answer = quizResult.QuizData.Answers[quizResult.QuizData.CorrectAnswerIndex];
 
