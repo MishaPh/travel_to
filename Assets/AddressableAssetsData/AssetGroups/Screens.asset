@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Screens
+  m_EditorClassIdentifier: 
+  m_GroupName: Screens
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 64a4e3df011c27243ac95d79b25373b0
+  m_SerializeEntries:
+  - m_GUID: bc4b9e27fa1804140bfdcd50a64fb9ff
+    m_Address: Assets/Screens/FlagQuizScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0484c99c970158947879781be80ebcc7
+    m_Address: Assets/Screens/LoadingScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9722a310289263442bce79a9e5aa628c
+    m_Address: Assets/Screens/MainScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd07f8391345c00468f52d0f237f6352
+    m_Address: Assets/Screens/FlagQuizFinishScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c5146c8a1feb804ba3beb157969a849
+    m_Address: Assets/Screens/TextQuizScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 084daa145b053aa448d4c25c0e9c82ea
+    m_Address: Assets/Screens/TextQuizFinishScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 2b20237e96f4ca74aa3982a3112d072b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 07cbd6b02db78e0429d6d84d7a4ca5f3, type: 2}
+    - {fileID: 11400000, guid: 4a507d7646eb73946b5c528e30db9b4c, type: 2}

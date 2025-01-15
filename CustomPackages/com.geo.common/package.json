@@ -1,0 +1,8 @@
+{
+  "name" : "com.geo.common",
+  "version" : "0.1.0",
+  "displayName" : "Geo.Common",
+  "description" : "Common scripts",
+  "unity" : "2022.3",
+  "hideInEditor": false
+}

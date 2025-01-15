@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b948506b4db95d94ba663a1e08fa5a0c, type: 3}
+  m_Name: ImageCollection
+  m_EditorClassIdentifier: 
+  _images:
+  - ImageID: ca
+    Sprite:
+      m_AssetGUID: aa7afeb4cdb604109a8aa4c8e19c5207
+      m_SubObjectName: ca
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 1
+  - ImageID: ie
+    Sprite:
+      m_AssetGUID: f01b1383a489f473380152fa57a2626b
+      m_SubObjectName: ie
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 1
+  - ImageID: nz
+    Sprite:
+      m_AssetGUID: c840c90675e444fed9551f13fec3d49f
+      m_SubObjectName: nz
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 1
+  - ImageID: us
+    Sprite:
+      m_AssetGUID: f75ef7a79354a4bca9e8b6f856f82a8d
+      m_SubObjectName: us
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0
+  - ImageID: loc_berlin
+    Sprite:
+      m_AssetGUID: a20353a09c0104257b308f5ae55c9f66
+      m_SubObjectName: loc_berlin
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 0

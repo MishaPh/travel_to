@@ -1,0 +1,8 @@
+{
+  "name" : "com.geo.external",
+  "version" : "0.1.0",
+  "displayName" : "Geo.External",
+  "description" : "External libraries",
+  "unity" : "2022.3",
+  "hideInEditor": false
+}

@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded551cbb98a25f4bab98c60d7df8355, type: 3}
+  m_Name: BoardDataMiddle
+  m_EditorClassIdentifier: 
+  Points:
+  - {x: -2, y: 0}
+  - {x: -2, y: 1}
+  - {x: -1, y: 1}
+  - {x: -1, y: 2.5}
+  - {x: -2, y: 2.5}
+  - {x: -2, y: 4}
+  - {x: -1, y: 4}
+  - {x: -1, y: 5}
+  - {x: 0.5, y: 5}
+  - {x: 0.5, y: 3.5}
+  - {x: 1.5, y: 3.5}
+  - {x: 1.5, y: 2.5}
+  - {x: 2.5, y: 2.5}
+  - {x: 2.5, y: 3}
+  - {x: 3.5, y: 3}
+  - {x: 3.5, y: 1}
+  - {x: 1, y: 1}
+  - {x: 1, y: 0}
+  Spaces:
+  - Position: {x: -2, y: 0, z: 0}
+    Space: 0
+  - Position: {x: -2, y: 0, z: 0.5}
+    Space: 2
+  - Position: {x: -2, y: 0, z: 1}
+    Space: 2
+  - Position: {x: -1.5, y: 0, z: 1}
+    Space: 0
+  - Position: {x: -1, y: 0, z: 1}
+    Space: 0
+  - Position: {x: -1, y: 0, z: 1.5}
+    Space: 0
+  - Position: {x: -1, y: 0, z: 2}
+    Space: 1
+  - Position: {x: -1, y: 0, z: 2.5}
+    Space: 0
+  - Position: {x: -1.5, y: 0, z: 2.5}
+    Space: 2
+  - Position: {x: -2, y: 0, z: 2.5}
+    Space: 0
+  - Position: {x: -2, y: 0, z: 3}
+    Space: 1
+  - Position: {x: -2, y: 0, z: 3.5}
+    Space: 2
+  - Position: {x: -2, y: 0, z: 4}
+    Space: 0
+  - Position: {x: -1.5, y: 0, z: 4}
+    Space: 0
+  - Position: {x: -1, y: 0, z: 4}
+    Space: 0
+  - Position: {x: -1, y: 0, z: 4.5}
+    Space: 0
+  - Position: {x: -1, y: 0, z: 5}
+    Space: 0
+  - Position: {x: -0.5, y: 0, z: 5}
+    Space: 0
+  - Position: {x: 0.000000029802322, y: 0, z: 5}
+    Space: 0
+  - Position: {x: 0.5, y: 0, z: 5}
+    Space: 1
+  - Position: {x: 0.5, y: 0, z: 4.5}
+    Space: 0
+  - Position: {x: 0.5, y: 0, z: 4}
+    Space: 0
+  - Position: {x: 0.5, y: 0, z: 3.5}
+    Space: 0
+  - Position: {x: 1, y: 0, z: 3.5}
+    Space: 2
+  - Position: {x: 1.5, y: 0, z: 3.5}
+    Space: 0
+  - Position: {x: 1.5, y: 0, z: 3}
+    Space: 0
+  - Position: {x: 1.5, y: 0, z: 2.5}
+    Space: 0
+  - Position: {x: 2, y: 0, z: 2.5}
+    Space: 1
+  - Position: {x: 2.5, y: 0, z: 2.5}
+    Space: 0
+  - Position: {x: 2.5, y: 0, z: 3}
+    Space: 0
+  - Position: {x: 3, y: 0, z: 3}
+    Space: 0
+  - Position: {x: 3.5, y: 0, z: 3}
+    Space: 0
+  - Position: {x: 3.5, y: 0, z: 2.5}
+    Space: 0
+  - Position: {x: 3.5, y: 0, z: 2}
+    Space: 0
+  - Position: {x: 3.5, y: 0, z: 1.5}
+    Space: 0
+  - Position: {x: 3.5, y: 0, z: 1}
+    Space: 0
+  - Position: {x: 3, y: 0, z: 1}
+    Space: 0
+  - Position: {x: 2.5, y: 0, z: 1}
+    Space: 0
+  - Position: {x: 2, y: 0, z: 1}
+    Space: 1
+  - Position: {x: 1.5, y: 0, z: 1}
+    Space: 0
+  - Position: {x: 1, y: 0, z: 1}
+    Space: 0
+  - Position: {x: 1, y: 0, z: 0.5}
+    Space: 0
+  - Position: {x: 1, y: 0, z: 0}
+    Space: 2
+  - Position: {x: 0.5, y: 0, z: 0}
+    Space: 1
+  - Position: {x: -0.000000029802322, y: 0, z: 0}
+    Space: 2
+  - Position: {x: -0.5, y: 0, z: 0}
+    Space: 0
+  - Position: {x: -1, y: 0, z: 0}
+    Space: 0
+  - Position: {x: -1.5, y: 0, z: 0}
+    Space: 0
