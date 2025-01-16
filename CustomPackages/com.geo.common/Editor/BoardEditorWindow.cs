@@ -33,11 +33,11 @@ namespace Geo.Common.Editor
 
             var boardData = EditorGUILayout.ObjectField(_boardData, typeof(BoardData), false);
             EditorGUILayout.BeginVertical("box");
-            EditorGUILayout.IntField("Count", _countBoxes);
+            EditorGUILayout.LabelField($"Count spaces in the board: {_countBoxes}");
             EditorGUILayout.EndVertical();
 
             _percent = EditorGUILayout.IntSlider("Special Space Percent", _percent, 0, 100);
-            if (GUILayout.Button("Update Spawns"))
+            if (GUILayout.Button("Update Space Points"))
             {
                 _boardData.Spaces = GenerateSpaces();
                 EditorUtility.SetDirty(_boardData);
@@ -47,6 +47,14 @@ namespace Geo.Common.Editor
             {
                 EditorGUILayout.LabelField("The space count was changed.");
             }
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginVertical("box");
+            EditorGUILayout.LabelField("Gizmos information: ");
+            EditorGUILayout.LabelField("Blue - is a moveable point");
+            EditorGUILayout.LabelField("Cyan - is a moveable line");
+            EditorGUILayout.LabelField("Green - is a special space");
+            EditorGUILayout.LabelField("Red - indicate an invalid point");
+            EditorGUILayout.EndVertical();
         }
 
         private void OnEnable()
