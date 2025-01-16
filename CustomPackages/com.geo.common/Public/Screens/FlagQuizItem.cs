@@ -59,6 +59,11 @@ namespace Geo.Common.Public.Screens
             _button.enabled = onClick != null;
         }
 
+        public void DisableClick()
+        {
+            _button.onClick.RemoveAllListeners();
+        }
+
         public void Clear()
         {
             _icon.sprite = null;

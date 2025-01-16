@@ -53,15 +53,14 @@ namespace Geo.Common.Public.Core
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            _loadingScreen.FadeIn(0);
-
-            SetPlayerOnBoard();
-
+            
             StartMainGame().Forget();
+            SetPlayerOnBoard();
         }
 
         public async Task StartMainGame()
         {
+            _loadingScreen.FadeIn(0);
             await _quizManager.LoadAllCollectionsAsync();
             await _imageAssetManager.LoadAllCollectionsAsync();
 
@@ -82,58 +81,65 @@ namespace Geo.Common.Public.Core
         private async Task CreateMainScreen()
         {
             _mainScreen = await _screenFactory.CreateMainScreen();
-            _mainScreen.OnRoll += OnRollClick;
-            _mainScreen.SetCoins(_playerStorage.Coins, false);
+            _mainScreen.Initialize(_playerStorage.Coins, OnRollClick);
+        }
+
+        private int GetRandomDiceValue()
+        {
+            return Random.Range(1, Consts.MaxDiceValue + 1);
         }
 
         private void OnRollClick()
         {
-            RollDiceAsync(CancellationToken.None).Forget();
+            var result = _boardData.CalculateResult(_playerStorage.Index, GetRandomDiceValue());
+            _playerStorage.SetIndex(result.Indexes[^1]);
+
+            ExecuteRollDiceAsync(result, CancellationToken.None).Forget();
         }
 
-        private async Task RollDiceAsync(CancellationToken token)
+        private async Task ExecuteRollDiceAsync(BoardResult result, CancellationToken token)
         {
             _mainScreen.DisableRollButton();
 
-            var result = _boardData.CalculateResult(_playerStorage.Index, Random.Range(1, Consts.MaxDiceValue + 1));
-            _playerStorage.SetIndex(result.Indexes[^1]);
-
             await _board.AnimateMoveAsync(_player, result, token);
+
             _player.PlayFinishMoveAsync().Forget();
 
-            if (result.Info.Space == SpaceType.Empty)
-            {
-                _playerStorage.AddCoins(Consts.EmptyTileReward);
-                await GiveRewardAsync(Consts.EmptyTileReward);
-            }
-            else
-            {
-                PlayQuizAsync(result.Info.Space).Forget();
-            }
+            await ExecuteTileActionAsync(result.Info.Space, token);
 
             _mainScreen.EnableRollButton();
         }
 
-        private async Task GiveRewardAsync(int coins)
+        private async Task ExecuteTileActionAsync(SpaceType type, CancellationToken token)
         {
-            var reward = Instantiate(_rewardPrefab, _player.transform.position, Quaternion.identity);
-            reward.PlayAnimation(coins);
+            if (type == SpaceType.Empty)
+            {
+                _playerStorage.AddCoins(Consts.EmptyTileReward);
+                await PlayRewardAnimationAsync(_player.transform.position, Consts.EmptyTileReward);
+            }
+            else
+            {
+                await PlayQuizAsync(type, token);
+            }
+        }
 
+        private async Task PlayRewardAnimationAsync(Vector3 positin, int coins)
+        {
+            var reward = Instantiate(_rewardPrefab, positin, Quaternion.identity);
+            reward.PlayAnimation(coins);
             var waitBeforeContinue = reward.GetAnimationDuratiion() * 0.5f;
             await Task.Delay(waitBeforeContinue.SecondsToTicks());
-
             _mainScreen.SetCoins(_playerStorage.Coins);
         }
 
-        private async Task PlayQuizAsync(SpaceType spaceType)
+        private async Task PlayQuizAsync(SpaceType spaceType, CancellationToken token)
         {
             await _loadingScreen.FadeInAsync(0.2f);
-           
-            QuizGameBase game = (spaceType == SpaceType.FlagQuiz) ?
-                _quizGameFactory.CreateQuiz<FlagQuizGame>() :
-                _quizGameFactory.CreateQuiz<TextQuizGame>();
+
+            var game = _quizGameFactory.CreateQuiz(spaceType);
 
             await game.LoadAsync();
+
             _board.Hide();
             _mainScreen.Hide();
             _loadingScreen.FadeOut();
@@ -146,12 +152,14 @@ namespace Geo.Common.Public.Core
         {
             _board.Show();
             _mainScreen.Show();
+
             if (!result.Win)
                 return;
 
             _playerStorage.AddCoins(Consts.QuizReward);
             _mainScreen.SetCoins(_playerStorage.Coins);
         }
+
         #region for Quiz Tests
 #if UNITY_EDITOR
         [ContextMenu("PlayTextQuiz")]
@@ -163,7 +171,7 @@ namespace Geo.Common.Public.Core
                 return;
             }
 
-            PlayQuizAsync(SpaceType.TextQuiz).Forget();
+            PlayQuizAsync(SpaceType.TextQuiz, CancellationToken.None).Forget();
         }
 
         [ContextMenu("PlayFlagQuiz")]
@@ -175,7 +183,7 @@ namespace Geo.Common.Public.Core
                 return;
             }
 
-            PlayQuizAsync(SpaceType.FlagQuiz).Forget();
+            PlayQuizAsync(SpaceType.FlagQuiz, CancellationToken.None).Forget();
         }
 #endif
 #endregion

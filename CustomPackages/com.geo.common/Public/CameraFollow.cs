@@ -15,7 +15,6 @@ namespace Geo.Common.Public
         private Vector2 threshold;
 
         private Vector3 _offset;
-
         private Camera _camera;
 
         private void Awake()
@@ -32,14 +31,20 @@ namespace Geo.Common.Public
             Vector3 cameraPosition = transform.position;
             Vector3 targetPosition = _target.position + _offset;
 
-            var difference = _camera.WorldToViewportPoint(_target.position);
-            difference.x = Mathf.Abs(difference.x - 0.5f);
-            difference.y = Mathf.Abs(difference.y - 0.5f);
+            var difference = DistanceToCameraViewCenter(_target.position);
 
             if (difference.x > threshold.x || difference.y > threshold.y)
             {
                 transform.position = Vector3.Lerp(cameraPosition, targetPosition, smoothSpeed);
             }
+        }
+
+        private Vector2 DistanceToCameraViewCenter(Vector3 position)
+        {
+            var difference = _camera.WorldToViewportPoint(position);
+            difference.x = Mathf.Abs(difference.x - 0.5f);
+            difference.y = Mathf.Abs(difference.y - 0.5f);
+            return difference;
         }
     }
 }

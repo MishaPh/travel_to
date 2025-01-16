@@ -30,7 +30,6 @@ namespace Geo.Common.Public.Screens
 
         private Action<QuizGameResult> _onResult;
         private QuizData _data;
-        private int _selectedAnswer = -1;
 
         [Inject]
         private void Construct(IAssetLoader loader, IImageAssetManager manager)
@@ -61,6 +60,8 @@ namespace Geo.Common.Public.Screens
                 var answerIndex = i;
                 _items[i].Show(data.Answers[i].Text, () => { ReceiveAnswer(answerIndex); });
             }
+
+            StartTimer();
         }
 
         private void SetImageSprite(Sprite sprite)
@@ -76,18 +77,26 @@ namespace Geo.Common.Public.Screens
 
         private void ReceiveAnswer(int value)
         {
-            if (_selectedAnswer != -1)
-                return;
-
-            _selectedAnswer = value;
-
             var win = value == _data.CorrectAnswerIndex;
             if (win)
                 _items[value].ShowSucced();
             else
                 _items[value].ShowFail();
 
+            StopTimer();
+            SendResult(win);
+        }
+
+        protected override void OnTimeOut()
+        {
+            SendResult(false);
+        }
+
+        private void SendResult(bool win)
+        {
+            _items.ForEach(item => item.DisableClick());
             _onResult?.Invoke(new QuizGameResult(_data, win));
+            _onResult = null;
         }
     }
 }

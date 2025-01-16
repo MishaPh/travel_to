@@ -61,6 +61,11 @@ namespace Geo.Common.Public.Screens
             _text.text = text;
         }
 
+        public void DisableClick()
+        {
+            _button.onClick.RemoveAllListeners();
+        }
+
         public void Clear()
         {
             _buttonBg.sprite = _normalSprite;

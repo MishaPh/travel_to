@@ -3,6 +3,7 @@ using Zenject;
 
 namespace Geo.Common.Public.QuizGames
 {
+
     public sealed class QuizGameFactory : IQuizGameFactory
     {
         private readonly DiContainer _diContainer;

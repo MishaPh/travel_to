@@ -15,7 +15,6 @@ namespace Geo.Common.Public.Screens
         [Inject]
         public void Construct(
             IAssetLoader assetLoader,
-            IImageAssetManager imageAssetManager,
             ScreenCollection screenCollection, 
             DiContainer diContainer,
             Canvas canvas)

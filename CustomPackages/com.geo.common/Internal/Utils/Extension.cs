@@ -25,5 +25,12 @@ namespace Geo.Common.Internal
         {
             return Mathf.RoundToInt(seconds * 1000);
         }
+
+        public static string ConvertToTimeString(this float seconds)
+        {
+            int minutes = Mathf.FloorToInt(seconds / 60);
+            int secs = Mathf.FloorToInt(seconds % 60);
+            return string.Format("{0:00}:{1:00}", minutes, secs);
+        }
     }
 }

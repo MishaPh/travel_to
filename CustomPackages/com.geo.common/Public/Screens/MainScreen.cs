@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -17,17 +16,20 @@ namespace Geo.Common.Public.Screens
         private TextMeshProUGUI _coinsText;
 
         private int _coins;
+        private bool _initialized = false;
 
-        public event UnityAction OnRoll;
-
-        private void Awake()
+        public void Initialize(int coins, UnityAction onRollClick)
         {
-            _rollButton.onClick.AddListener(OnClickRoll);
-        }
+            if (_initialized)
+            {
+                Debug.LogWarning($"The {nameof(MainScreen)} already initialized");
+                return;
+            }
+            _initialized = true;
+            _coins = coins;
+            _coinsText.text = coins.ToString();
 
-        private void OnClickRoll()
-        {
-            OnRoll?.Invoke();
+            _rollButton.onClick.AddListener(onRollClick);
         }
 
         public void DisableRollButton()
@@ -40,35 +42,28 @@ namespace Geo.Common.Public.Screens
             _rollButton.interactable = true;
         }
 
-        public void SetCoins(int value, bool animate = true)
+        public void SetCoins(int value)
         {
-            if (animate)
-            {
-                StartCoroutine(AnimateCoinsCorroutine(_coins, value));
-            }
-            else 
-            {
-                _coins = value;
-                _coinsText.text = value.ToString();
-            }
+            StartCoroutine(AnimateCoinsCorroutine(_coins, value));
         }
 
         private IEnumerator AnimateCoinsCorroutine(int from, int to)
         {
+            const float shortTweenDuration = 0.03f;
             var delta = to - from;
             while (delta > 1)
             {
                 int change = Mathf.Max(1,  (int) (delta * 0.3f));
                 from += change;
                 delta -= change;
-                SetCoinsWithAnimation(from);
-                yield return new WaitForSeconds(0.04f);
+                SetCoinsWithAnimation(from, shortTweenDuration);
+                yield return new WaitForSeconds(shortTweenDuration);
             }
 
-            SetCoinsWithAnimation(to);
+            SetCoinsWithAnimation(to, shortTweenDuration);
         }
 
-        private void SetCoinsWithAnimation(int value)
+        private void SetCoinsWithAnimation(int value, float duration)
         {
             _coinsText.text = value.ToString();
             float scale = 0.0f;
@@ -76,7 +71,7 @@ namespace Geo.Common.Public.Screens
             {
                 scale = v;
                 _coinsText.transform.localScale = Vector3.one * Mathf.Lerp(1.3f, 1.0f, Mathf.Abs(v - 0.5f) * 2);
-            }, 1.0f, 0.03f);
+            }, 1.0f, duration);
         }
     }
 }

@@ -24,7 +24,6 @@ namespace Geo.Common.Public.Screens
 
         private Action<QuizGameResult> _onAnswer;
         private QuizData _data;
-        private int _selectedAnswer = -1;
 
         [Inject]
         private void Construct(IAssetLoader loader, IImageAssetManager manager)
@@ -33,7 +32,7 @@ namespace Geo.Common.Public.Screens
             _manager = manager;
         }
 
-        public override Task ShowAsync(QuizData data, Action<QuizGameResult> resultCallback, CancellationToken token)
+        public override async Task ShowAsync(QuizData data, Action<QuizGameResult> resultCallback, CancellationToken token)
         {
             _data = data;
             _questionText.text = data.Question;
@@ -47,7 +46,9 @@ namespace Geo.Common.Public.Screens
                 tasks.Add(SetItemSpriteAsync(_items[i], data.Answers[i].ImageID, i, token));
             }
 
-            return Task.WhenAll(tasks);
+            await Task.WhenAll(tasks);
+
+            StartTimer();
         }
 
         private async Task SetItemSpriteAsync(FlagQuizItem item, string imageID, int answerIndex, CancellationToken token)
@@ -57,21 +58,29 @@ namespace Geo.Common.Public.Screens
                 return;
 
             var sprite = await _loader.LoadAsync(asset, AssetCacheTags.FlagQuizTag);
-            item.Show(sprite, () => { ReceiveAnswer(answerIndex); });
+            item.Show(sprite, () => { UpdateAnswer(answerIndex); });
         }
 
-        private void ReceiveAnswer(int value)
+        private void UpdateAnswer(int value)
         {
-            if (_selectedAnswer != -1)
-                return;
-
-            _selectedAnswer = value;
             var win = value == _data.CorrectAnswerIndex;
             if (win)
                 _items[value].ShowSucced();
             else
                 _items[value].ShowFail();
 
+            StopTimer();
+            SendResult(win);
+        }
+
+        protected override void OnTimeOut()
+        {
+            SendResult(false);
+        }
+
+        private void SendResult(bool win)
+        {
+            _items.ForEach(item => item.DisableClick());
             _onAnswer?.Invoke(new QuizGameResult(_data, win));
             _onAnswer = null;
         }

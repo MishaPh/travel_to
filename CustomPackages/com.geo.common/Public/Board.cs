@@ -35,11 +35,11 @@ namespace Geo.Common.Public
             }
         }
 
-        public async Task AnimateMoveAsync(IPlayer unit, BoardResult result, CancellationToken token)
+        public async Task AnimateMoveAsync(IPlayer player, BoardResult result, CancellationToken token)
         {
             foreach (var index in result.Indexes)
             {
-                await unit.MoveToAsync(_boardData.Spaces[index].Position);
+                await player.MoveToAsync(_boardData.Spaces[index].Position);
                 _tiles[index].OnHit();
 
                 if (token.IsCancellationRequested)
