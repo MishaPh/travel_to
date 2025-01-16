@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Geo.Common.Public
 {
-    public sealed class Player : MonoBehaviour, IUnit
+    public sealed class Player : MonoBehaviour, IPlayer
     {
         [SerializeField]
         private Animation _animation;

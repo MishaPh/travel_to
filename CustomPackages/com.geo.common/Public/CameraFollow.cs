@@ -5,29 +5,34 @@ namespace Geo.Common.Public
     [RequireComponent(typeof(Camera))]
     public sealed class CameraFollow : MonoBehaviour
     {
-        [SerializeField] private Transform player;
-        [SerializeField] private float smoothSpeed = 0.125f; 
-        [SerializeField] private Vector2 threshold;
-        [SerializeField] private Vector3 offset;
-        [SerializeField] private Vector2 difference;
+        [SerializeField] 
+        private Transform _target;
+
+        [SerializeField] 
+        private float smoothSpeed = 0.125f; 
+
+        [SerializeField] 
+        private Vector2 threshold;
+
+        private Vector3 _offset;
 
         private Camera _camera;
 
         private void Awake()
         {
             _camera = GetComponent<Camera>();
-            offset = transform.position - player.position;
+            _offset = transform.position - _target.position;
         }
 
         private void LateUpdate()
         {
-            if (player == null)
+            if (_target == null)
                 return;
 
             Vector3 cameraPosition = transform.position;
-            Vector3 targetPosition = player.position + offset;
+            Vector3 targetPosition = _target.position + _offset;
 
-            difference = _camera.WorldToViewportPoint(player.position);
+            var difference = _camera.WorldToViewportPoint(_target.position);
             difference.x = Mathf.Abs(difference.x - 0.5f);
             difference.y = Mathf.Abs(difference.y - 0.5f);
 

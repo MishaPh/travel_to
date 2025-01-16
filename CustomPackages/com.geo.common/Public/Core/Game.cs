@@ -1,4 +1,5 @@
-﻿using Geo.Common.Internal.Boards;
+﻿using Geo.Common.Internal;
+using Geo.Common.Internal.Boards;
 using Geo.Common.Internal.Quizzes;
 using Geo.Common.Internal.Utils;
 using Geo.Common.Public.QuizGames;
@@ -17,12 +18,11 @@ namespace Geo.Common.Public.Core
         private IImageAssetManager _imageAssetManager;
         private LoadingScreen _loadingScreen;
         private ScreenFactory _screenFactory;
-        private IQuizGameFactory _quizHelper;
+        private IQuizGameFactory _quizGameFactory;
         private IUserStorage _playerStorage;
 
-        private Camera _camera;
-        private Board _board;
         private Player _player;
+        private Board _board;
 
         [SerializeField]
         private TileReward _rewardPrefab;
@@ -35,9 +35,8 @@ namespace Geo.Common.Public.Core
             IQuizManager quizManager,
             LoadingScreen loadingScreen,
             ScreenFactory screenFactory,
-            IQuizGameFactory quizHelper,
+            IQuizGameFactory quizFactory,
             IUserStorage playerStorage,
-            Camera camera,
             Board board,
             Player player)
         {
@@ -45,8 +44,7 @@ namespace Geo.Common.Public.Core
             _quizManager = quizManager;
             _loadingScreen = loadingScreen;
             _screenFactory = screenFactory;
-            _quizHelper = quizHelper;
-            _camera = camera;
+            _quizGameFactory = quizFactory;
             _board = board;
             _player = player;
             _playerStorage = playerStorage;
@@ -85,7 +83,7 @@ namespace Geo.Common.Public.Core
         {
             _mainScreen = await _screenFactory.CreateMainScreen();
             _mainScreen.OnRoll += OnRollClick;
-            _mainScreen.SetCoins(_playerStorage.Coins);
+            _mainScreen.SetCoins(_playerStorage.Coins, false);
         }
 
         private void OnRollClick()
@@ -97,19 +95,20 @@ namespace Geo.Common.Public.Core
         {
             _mainScreen.DisableRollButton();
 
-            var result = _board.CalculateResult(_playerStorage.Index, Random.Range(1, Consts.MaxDiceValue + 1));
+            var result = _boardData.CalculateResult(_playerStorage.Index, Random.Range(1, Consts.MaxDiceValue + 1));
             _playerStorage.SetIndex(result.Indexes[^1]);
 
             await _board.AnimateMoveAsync(_player, result, token);
             _player.PlayFinishMoveAsync().Forget();
 
-            if (result.HitInfo.Space == SpaceType.Empty)
+            if (result.Info.Space == SpaceType.Empty)
             {
-                await GiveRewardAsync(10 * Random.Range(10, 100));
+                _playerStorage.AddCoins(Consts.EmptyTileReward);
+                await GiveRewardAsync(Consts.EmptyTileReward);
             }
             else
             {
-                PlayQuizAsync(result.HitInfo.Space).Forget();
+                PlayQuizAsync(result.Info.Space).Forget();
             }
 
             _mainScreen.EnableRollButton();
@@ -118,50 +117,64 @@ namespace Geo.Common.Public.Core
         private async Task GiveRewardAsync(int coins)
         {
             var reward = Instantiate(_rewardPrefab, _player.transform.position, Quaternion.identity);
-            reward.PlayAnimation(_camera, coins);
+            reward.PlayAnimation(coins);
 
-            await Task.Delay(Mathf.RoundToInt(Mathf.Min(reward.GetAnimationDuratiion(), 0.5f) * 1000));
+            var waitBeforeContinue = reward.GetAnimationDuratiion() * 0.5f;
+            await Task.Delay(waitBeforeContinue.SecondsToTicks());
 
-            _playerStorage.AddCoins(coins);
-            _mainScreen.AnimateCoinsTo(_playerStorage.Coins);
+            _mainScreen.SetCoins(_playerStorage.Coins);
         }
 
         private async Task PlayQuizAsync(SpaceType spaceType)
         {
             await _loadingScreen.FadeInAsync(0.2f);
-
-            QuizGameBase game = (spaceType == SpaceType.FlagQuiz) ? 
-                _quizHelper.CreateQuiz<FlagQuizGame>() : 
-                _quizHelper.CreateQuiz<TextQuizGame>();
+           
+            QuizGameBase game = (spaceType == SpaceType.FlagQuiz) ?
+                _quizGameFactory.CreateQuiz<FlagQuizGame>() :
+                _quizGameFactory.CreateQuiz<TextQuizGame>();
 
             await game.LoadAsync();
             _board.Hide();
+            _mainScreen.Hide();
             _loadingScreen.FadeOut();
 
             var data = _quizManager.GetRandomQuizData(spaceType);
-            game.PlayQuiz(data, FinishGame);
+            game.PlayQuiz(data, OnFinishGame);
         }
 
-        private void FinishGame(QuizGameResult result)
+        private void OnFinishGame(QuizGameResult result)
         {
             _board.Show();
+            _mainScreen.Show();
             if (!result.Win)
                 return;
 
-            _playerStorage.AddCoins(5000);
-            _mainScreen.AnimateCoinsTo(_playerStorage.Coins);
+            _playerStorage.AddCoins(Consts.QuizReward);
+            _mainScreen.SetCoins(_playerStorage.Coins);
         }
-#region for Quiz Tests
+        #region for Quiz Tests
 #if UNITY_EDITOR
         [ContextMenu("PlayTextQuiz")]
         private void PlayTextQuiz()
         {
+            if (!Application.isPlaying) 
+            { 
+                Debug.LogWarning("It's working only in play");
+                return;
+            }
+
             PlayQuizAsync(SpaceType.TextQuiz).Forget();
         }
 
         [ContextMenu("PlayFlagQuiz")]
         private void PlayFlagQuiz()
         {
+            if (!Application.isPlaying)
+            {
+                Debug.LogWarning("It's working only in play");
+                return;
+            }
+
             PlayQuizAsync(SpaceType.FlagQuiz).Forget();
         }
 #endif

@@ -1,18 +1,17 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace Geo.Common.Internal.Boards
 {
     public readonly struct BoardResult
     {
         public readonly int Roll;
         public readonly int[] Indexes;
-        public readonly SpaceInfo HitInfo;
+        public readonly SpaceInfo Info;
 
-        public BoardResult(int roll, int[] indexes, SpaceInfo hitInfo) : this()
+        public BoardResult(int roll, int[] indexes, SpaceInfo info) : this()
         {
             Roll = roll;
             Indexes = indexes;
-            HitInfo = hitInfo;
+            Info = info;
         }
     }
 }

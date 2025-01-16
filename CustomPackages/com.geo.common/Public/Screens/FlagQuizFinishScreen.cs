@@ -7,7 +7,6 @@ using Zenject;
 
 namespace Geo.Common.Public.Screens
 {
-
     public sealed class FlagQuizFinishScreen : QuizFinishScreenBase
     {
         [SerializeField]
@@ -34,12 +33,8 @@ namespace Geo.Common.Public.Screens
             _answerText.text = answer.Text;
 
             var reference = _manager.GetImageReference(answer.ImageID);
-
-            if (reference != null)
-            { 
-                var sprite = await _loader.LoadAsync(reference, AssetCacheTags.FlagQuizTag);
-                _item.Show(sprite);
-            }
+            var sprite = reference != null ? await _loader.LoadAsync(reference, AssetCacheTags.FlagQuizTag) : null;
+            _item.Show(sprite, null);
 
             await WaitForClickAsync(token);
         }

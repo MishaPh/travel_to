@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Geo.Common.Public.Screens
@@ -17,11 +18,16 @@ namespace Geo.Common.Public.Screens
 
         private int _coins;
 
-        public event Action OnRoll;
+        public event UnityAction OnRoll;
 
         private void Awake()
         {
-            _rollButton.onClick.AddListener(() => { OnRoll?.Invoke(); });
+            _rollButton.onClick.AddListener(OnClickRoll);
+        }
+
+        private void OnClickRoll()
+        {
+            OnRoll?.Invoke();
         }
 
         public void DisableRollButton()
@@ -34,15 +40,17 @@ namespace Geo.Common.Public.Screens
             _rollButton.interactable = true;
         }
 
-        public void SetCoins(int value)
+        public void SetCoins(int value, bool animate = true)
         {
-            _coins = value;
-            _coinsText.text = value.ToString();
-        }
-
-        public void AnimateCoinsTo(int to)
-        {
-            StartCoroutine(AnimateCoinsCorroutine(_coins, to));
+            if (animate)
+            {
+                StartCoroutine(AnimateCoinsCorroutine(_coins, value));
+            }
+            else 
+            {
+                _coins = value;
+                _coinsText.text = value.ToString();
+            }
         }
 
         private IEnumerator AnimateCoinsCorroutine(int from, int to)

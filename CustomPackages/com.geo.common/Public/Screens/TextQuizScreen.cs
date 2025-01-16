@@ -30,7 +30,8 @@ namespace Geo.Common.Public.Screens
 
         private Action<QuizGameResult> _onResult;
         private QuizData _data;
-        
+        private int _selectedAnswer = -1;
+
         [Inject]
         private void Construct(IAssetLoader loader, IImageAssetManager manager)
         {
@@ -58,8 +59,7 @@ namespace Geo.Common.Public.Screens
                     break;
 
                 var answerIndex = i;
-                _items[i].Show(data.Answers[i].Text);
-                _items[i].OnClick = () => { ReceiveAnswer(answerIndex); };
+                _items[i].Show(data.Answers[i].Text, () => { ReceiveAnswer(answerIndex); });
             }
         }
 
@@ -76,7 +76,10 @@ namespace Geo.Common.Public.Screens
 
         private void ReceiveAnswer(int value)
         {
-            _items.ForEach(item => item.OnClick = null);
+            if (_selectedAnswer != -1)
+                return;
+
+            _selectedAnswer = value;
 
             var win = value == _data.CorrectAnswerIndex;
             if (win)

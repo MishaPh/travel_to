@@ -16,7 +16,7 @@ namespace Geo.Common.Public.Screens
         private readonly List<QuizData> _texts = new();
 
         public IReadOnlyList<QuizData> Flags => _flags;
-        public IReadOnlyList<QuizData> Cities => _texts;
+        public IReadOnlyList<QuizData> Textes => _texts;
 
         public QuizData GetRandomQuizData(SpaceType spaceType)
         {
@@ -39,7 +39,7 @@ namespace Geo.Common.Public.Screens
 
         private void AddCollection(QuizCollection collection)
         {
-            foreach (var asset in collection.GetAll)
+            foreach (var asset in collection.GetAll())
             {
                 var quiz = JsonUtility.FromJson<QuizData>(asset.text);
                 if (quiz.QuestionType == 1)

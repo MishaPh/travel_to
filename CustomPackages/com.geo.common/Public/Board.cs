@@ -10,7 +10,7 @@ namespace Geo.Common.Public
 {
     public sealed class Board : MonoBehaviour, IBoard
     {
-        private readonly List<ITileItem> _tiles = new();
+        private readonly List<TileItemBase> _tiles = new();
 
         private BoardData _boardData = null;
 
@@ -35,29 +35,7 @@ namespace Geo.Common.Public
             }
         }
 
-        private void Clear()
-        {
-            for (var i = transform.childCount - 1; i >= 0; i--)
-            {
-                Destroy(transform.GetChild(i).gameObject);
-            }
-            _tiles.Clear();
-        }
-
-        public BoardResult CalculateResult(int from, int dice)
-        {
-            var lastIndex = from;
-            var indexes = new int[dice];
-            for (var i = 0; i < dice; i++)
-            {
-                lastIndex = (lastIndex + 1) % _boardData.Spaces.Count;
-                indexes[i] = lastIndex;
-            }
-
-            return new BoardResult(dice, indexes, _boardData.Spaces[lastIndex]);
-        }
-
-        public async Task AnimateMoveAsync(IUnit unit, BoardResult result, CancellationToken token)
+        public async Task AnimateMoveAsync(IPlayer unit, BoardResult result, CancellationToken token)
         {
             foreach (var index in result.Indexes)
             {
@@ -77,6 +55,15 @@ namespace Geo.Common.Public
         public void Hide()
         {
             gameObject.SetActive(false);
+        }
+
+        private void Clear()
+        {
+            for (var i = transform.childCount - 1; i >= 0; i--)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
+            _tiles.Clear();
         }
     }
 }

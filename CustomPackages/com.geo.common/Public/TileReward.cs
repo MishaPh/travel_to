@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -17,11 +16,12 @@ namespace Geo.Common.Public
 
         public float GetAnimationDuratiion() => _animation.clip.length;
 
-        public void PlayAnimation(Camera camera, int countCoins)
+        public void PlayAnimation(int countCoins)
         {
-            _canvas.worldCamera = camera;
+            _canvas.worldCamera = Camera.main;
             _rewardText.text = countCoins.ToString();
             _animation.Play();
+
             Invoke(nameof(SelfDestroy), GetAnimationDuratiion());
         }
 

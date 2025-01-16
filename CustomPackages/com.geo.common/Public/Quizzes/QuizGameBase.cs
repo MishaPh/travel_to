@@ -13,10 +13,10 @@ namespace Geo.Common.Public.QuizGames
     {
         private const float WaitBeforeAnswer = 0.3f;
 
+        private readonly CancellationTokenSource _cancellationTokenSource = new();
+
         protected readonly IAssetLoader _loader;
         protected readonly ScreenFactory _screenFactory;
-
-        private readonly CancellationTokenSource _cancellationTokenSource = new();
 
         protected abstract IAssetCacheTag CacheTag { get;}
 
@@ -59,7 +59,7 @@ namespace Geo.Common.Public.QuizGames
 
         private async Task ShowFinisQuizAsync(QuizGameResult result, CancellationToken token)
         {
-            await Task.Delay(Mathf.RoundToInt(1000 * WaitBeforeAnswer), token);
+            await Task.Delay(WaitBeforeAnswer.SecondsToTicks(), token);
 
             var finishScreen = await CreateFinishScreenAsync();
 

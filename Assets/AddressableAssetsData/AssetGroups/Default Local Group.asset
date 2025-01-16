@@ -23,37 +23,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - QuizCollection
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aa7afeb4cdb604109a8aa4c8e19c5207
-    m_Address: Assets/QuizData/ca.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f01b1383a489f473380152fa57a2626b
-    m_Address: Assets/QuizData/ie.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c840c90675e444fed9551f13fec3d49f
-    m_Address: Assets/QuizData/nz.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f75ef7a79354a4bca9e8b6f856f82a8d
-    m_Address: Assets/QuizData/us.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a20353a09c0104257b308f5ae55c9f66
-    m_Address: Assets/QuizData/loc_berlin.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 221aea1917971034fb7c0a96bac07062
-    m_Address: Assets/ScriptableObjects/ImageCollection.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - ImageCollection
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2b20237e96f4ca74aa3982a3112d072b, type: 2}
   m_SchemaSet:

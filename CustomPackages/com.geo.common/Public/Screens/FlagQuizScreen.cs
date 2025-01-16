@@ -24,6 +24,7 @@ namespace Geo.Common.Public.Screens
 
         private Action<QuizGameResult> _onAnswer;
         private QuizData _data;
+        private int _selectedAnswer = -1;
 
         [Inject]
         private void Construct(IAssetLoader loader, IImageAssetManager manager)
@@ -43,29 +44,28 @@ namespace Geo.Common.Public.Screens
 
             for (var i = 0; i < Mathf.Min(data.Answers.Length, _items.Count); i++)
             {
-                tasks.Add(SetItemSpriteAsync(_items[i], data.Answers[i].ImageID, token));
-
-                var answerIndex = i;
-                _items[i].OnClick = () => { ReceiveAnswer(answerIndex); };
+                tasks.Add(SetItemSpriteAsync(_items[i], data.Answers[i].ImageID, i, token));
             }
 
             return Task.WhenAll(tasks);
         }
 
-        private async Task SetItemSpriteAsync(FlagQuizItem item, string imageID, CancellationToken token)
+        private async Task SetItemSpriteAsync(FlagQuizItem item, string imageID, int answerIndex, CancellationToken token)
         {
             var asset = _manager.GetImageReference(imageID);
             if (asset == null || token.IsCancellationRequested)
                 return;
 
             var sprite = await _loader.LoadAsync(asset, AssetCacheTags.FlagQuizTag);
-            item.Show(sprite);
+            item.Show(sprite, () => { ReceiveAnswer(answerIndex); });
         }
 
         private void ReceiveAnswer(int value)
         {
-            _items.ForEach(item => item.OnClick = null);
+            if (_selectedAnswer != -1)
+                return;
 
+            _selectedAnswer = value;
             var win = value == _data.CorrectAnswerIndex;
             if (win)
                 _items[value].ShowSucced();

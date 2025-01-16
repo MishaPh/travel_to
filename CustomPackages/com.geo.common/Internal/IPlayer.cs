@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Geo.Common.Internal
 {
-    public interface IUnit
+    public interface IPlayer
     {
         void TeleportTo(Vector3 position);
         Task MoveToAsync(Vector3 position, float duration = 0.3f);

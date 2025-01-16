@@ -13,12 +13,12 @@ namespace Geo.Common.Public
         public struct Tile
         {
             public SpaceType SpaceType;
-            public TileBase Prefab;
+            public TileItemBase Prefab;
         }
 
         public List<Tile> Tiles = new();
 
-        public TileBase GetTile(SpaceType type)
+        public TileItemBase GetTile(SpaceType type)
         {
             return Tiles
                 .Where(tile => tile.SpaceType == type)

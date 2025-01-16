@@ -1,10 +1,9 @@
 ﻿using DG.Tweening;
-using Geo.Common.Internal.Boards;
 using UnityEngine;
 
 namespace Geo.Common.Public
 {
-    public class TileBase : MonoBehaviour, ITileItem
+    public class TileItemBase : MonoBehaviour
     {
         [SerializeField]
         private Transform _model;
@@ -20,7 +19,7 @@ namespace Geo.Common.Public
 
         public void OnHit()
         {
-            _model.DOLocalJump(transform.position, -0.05f, 1, 0.5f).SetEase(Ease.OutBounce);
+            _model.DOLocalJump(transform.localPosition, -0.05f, 1, 0.5f).SetEase(Ease.OutBounce);
             _psHit.Play();
         }
     }

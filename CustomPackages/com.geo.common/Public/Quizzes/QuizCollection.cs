@@ -8,6 +8,7 @@ namespace Geo.Common.Public.Screens
     {
         [SerializeField]
         private List<TextAsset> _quizes;
-        public IReadOnlyList<TextAsset> GetAll => _quizes;
+
+        public IReadOnlyList<TextAsset> GetAll() => _quizes;
     }
 }

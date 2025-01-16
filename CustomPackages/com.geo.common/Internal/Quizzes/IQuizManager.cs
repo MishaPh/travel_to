@@ -8,7 +8,7 @@ namespace Geo.Common.Public.Screens
     public interface IQuizManager
     {
         IReadOnlyList<QuizData> Flags { get; }
-        IReadOnlyList<QuizData> Cities { get; }
+        IReadOnlyList<QuizData> Textes { get; }
         Task LoadAllCollectionsAsync();
         QuizData GetRandomQuizData(SpaceType spaceType);
     }

@@ -1,6 +1,6 @@
 ﻿using DG.Tweening;
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Geo.Common.Public.Screens
@@ -21,12 +21,8 @@ namespace Geo.Common.Public.Screens
 
         private Sequence _sequence;
 
-        public Action OnClick;
-
-
         private void Awake()
         {
-            _button.onClick.AddListener(ButtonOnClick);
             Clear();
         }
 
@@ -42,12 +38,12 @@ namespace Geo.Common.Public.Screens
             _sequence.Append(transform
                 .DOPunchScale(Vector3.one * 0.01f, 1.0f, 3, 0.5f)
                 .SetEase(Ease.InOutSine)
-                .SetDelay(UnityEngine.Random.Range(1.5f, 2.0f)));
+                .SetDelay(Random.Range(1.5f, 2.0f)));
 
             _sequence.Append(transform
                 .DOPunchScale(Vector3.one * 0.02f, 1.0f, 6, 0.3f)
                 .SetEase(Ease.InOutBounce)
-                .SetDelay(UnityEngine.Random.Range(1.5f, 2.0f)));
+                .SetDelay(Random.Range(1.5f, 2.0f)));
         }
 
         private void OnDisable()
@@ -55,14 +51,12 @@ namespace Geo.Common.Public.Screens
             _sequence?.Kill();
         }
 
-        private void ButtonOnClick()
+        public void Show(Sprite flag, UnityAction onClick)
         {
-            OnClick?.Invoke();
-        }
-
-        public void Show(Sprite flag)
-        {
+            Clear();
             _icon.sprite = flag;
+            _button.onClick.AddListener(onClick);
+            _button.enabled = onClick != null;
         }
 
         public void Clear()
@@ -70,7 +64,7 @@ namespace Geo.Common.Public.Screens
             _icon.sprite = null;
             _borderFail.enabled = false;
             _borderSucced.enabled = false;
-            OnClick = null;
+            _button.onClick.RemoveAllListeners();
         }
 
         public void ShowFail()

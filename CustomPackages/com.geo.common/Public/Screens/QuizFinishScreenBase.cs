@@ -1,4 +1,5 @@
-﻿using Geo.Common.Internal.Quizzes;
+﻿using Geo.Common.Internal;
+using Geo.Common.Internal.Quizzes;
 using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
@@ -9,6 +10,8 @@ namespace Geo.Common.Public.Screens
 {
     public abstract class QuizFinishScreenBase : ScreenBase, IPointerClickHandler
     {
+        private const float DelayBeforeFinishTouch = 0.3f;
+
         [SerializeField]
         protected TextMeshProUGUI _answerText;
 
@@ -22,17 +25,18 @@ namespace Geo.Common.Public.Screens
         protected GameObject _loseText;
 
         public bool Completed { get; protected set; }
+
         public abstract Task ShowResultAsync(QuizGameResult quizResult, CancellationToken token);
 
         protected async Task WaitForClickAsync(CancellationToken token)
         {
-            await Task.Delay(500, token);
+            await Task.Delay(DelayBeforeFinishTouch.SecondsToTicks(), token);
 
             Completed = false;
 
             while (!Completed && !token.IsCancellationRequested)
             {
-                await Task.Delay(100, token);
+                await Task.Yield();
             }
 
             Completed = true;
