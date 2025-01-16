@@ -12,7 +12,7 @@ namespace Geo.Common.Public
     {
         private readonly List<TileItemBase> _tiles = new();
 
-        private BoardData _boardData = null;
+        private BoardData _boardData;
 
         private TileCollection _tileCollection;
 

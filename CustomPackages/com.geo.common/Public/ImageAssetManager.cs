@@ -8,7 +8,7 @@ namespace Geo.Common.Public.Screens
 {
     public sealed class ImageAssetManager : IImageAssetManager
     {
-        private readonly static IEnumerable AssetKey = new[] { "ImageCollection" };
+        private static readonly IEnumerable AssetKey = new[] { "ImageCollection" };
 
         private readonly Dictionary<string, ImageAsset> _flags = new();
 

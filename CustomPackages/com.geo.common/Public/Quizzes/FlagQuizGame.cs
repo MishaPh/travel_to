@@ -15,12 +15,12 @@ namespace Geo.Common.Public.QuizGames
 
         protected override async Task<QuizScreenBase> CreateGameScreenAsync()
         {
-            return await _screenFactory.CreateFlagQuizScreen(CacheTag);
+            return await ScreenFactory.CreateFlagQuizScreen(CacheTag);
         }
 
         protected override async Task<QuizFinishScreenBase> CreateFinishScreenAsync()
         {
-            return await _screenFactory.CreateFlagFinishScreen(CacheTag);
+            return await ScreenFactory.CreateFlagFinishScreen(CacheTag);
         }
     }
 }

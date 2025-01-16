@@ -66,7 +66,7 @@ namespace Geo.Common.Public.Screens
         private void SetCoinsWithAnimation(int value, float duration)
         {
             _coinsText.text = value.ToString();
-            float scale = 0.0f;
+            var scale = 0.0f;
             DOTween.To(() => scale, v =>
             {
                 scale = v;

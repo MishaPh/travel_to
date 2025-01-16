@@ -4,9 +4,9 @@ namespace Geo.Common.Internal
 {
     public class DontDestroy : MonoBehaviour
     {
-        void Awake()
+        private void Awake()
         {
-            GameObject.DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

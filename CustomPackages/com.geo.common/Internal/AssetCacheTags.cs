@@ -2,7 +2,7 @@
 {
     public static class AssetCacheTags
     {
-        public static IAssetCacheTag FlagQuizTag = new StringAssetCacheTag("FlagQuizTag");
-        public static IAssetCacheTag TextQuizTag = new StringAssetCacheTag("TextQuizTag");
+        public static readonly IAssetCacheTag FlagQuizTag = new StringAssetCacheTag("FlagQuizTag");
+        public static readonly IAssetCacheTag TextQuizTag = new StringAssetCacheTag("TextQuizTag");
     }
 }

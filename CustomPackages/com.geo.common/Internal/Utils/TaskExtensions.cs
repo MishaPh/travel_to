@@ -14,7 +14,9 @@ namespace Geo.Common.Internal.Utils
                 _ = ForgetAwaited(task);
             }
 
-            async static Task ForgetAwaited(Task task)
+            return;
+
+            static async Task ForgetAwaited(Task task)
             {
                 try
                 {

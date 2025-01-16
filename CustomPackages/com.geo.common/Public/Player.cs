@@ -11,8 +11,9 @@ namespace Geo.Common.Public
         private Animation _animation;
         [SerializeField]
         private ParticleSystem _hitPs;
-
-        public float JumpPower = 0.5f;
+       
+        [SerializeField]
+        private float _jumpPower = 0.5f;
 
         private void PlayJumpAnimation()
         {
@@ -29,7 +30,7 @@ namespace Geo.Common.Public
             PlayJumpAnimation();
 
             return transform
-                .DOLocalJump(position, JumpPower, 1, duration)
+                .DOLocalJump(position, _jumpPower, 1, duration)
                 .SetEase(Ease.OutSine)
                 .OnComplete(PlayHit).AsyncWaitForCompletion();
         }

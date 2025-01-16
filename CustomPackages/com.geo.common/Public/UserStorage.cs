@@ -4,17 +4,17 @@ namespace Geo.Common.Public
 {
     public sealed class UserStorage : IUserStorage
     {
-        private const string INDEX_KEY = "Index";
-        private const string COINS_KEY = "Coins";
+        private const string IndexKey = "Index";
+        private const string CoinsKey = "Coins";
 
         public int Index { 
-            get => PlayerPrefs.GetInt(INDEX_KEY, 0); 
-            private set => PlayerPrefs.SetInt(INDEX_KEY, value);
+            get => PlayerPrefs.GetInt(IndexKey, 0); 
+            private set => PlayerPrefs.SetInt(IndexKey, value);
         }
 
         public int Coins {
-            get => PlayerPrefs.GetInt(COINS_KEY, 0);
-            private set => PlayerPrefs.SetInt(COINS_KEY, value);
+            get => PlayerPrefs.GetInt(CoinsKey, 0);
+            private set => PlayerPrefs.SetInt(CoinsKey, value);
         }
 
         public void AddCoins(int score)

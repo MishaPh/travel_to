@@ -12,7 +12,7 @@
                 indexes[i] = lastIndex;
             }
 
-            return new BoardResult(dice, indexes, boardData.Spaces[lastIndex]);
+            return new BoardResult(indexes, boardData.Spaces[lastIndex]);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Geo.Common.Public
 {
-    public sealed class Consts
+    public static class Consts
     {
-        public static readonly int MaxDiceValue = 6;
-        public static readonly int EmptyTileReward = 1000;
-        public static readonly int QuizReward = 5000;
+        public const int MaxDiceValue = 6;
+        public const int EmptyTileReward = 1000;
+        public const int QuizReward = 5000;
     }
 }

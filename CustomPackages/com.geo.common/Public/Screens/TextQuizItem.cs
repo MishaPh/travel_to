@@ -44,7 +44,7 @@ namespace Geo.Common.Public.Screens
                 .SetDelay(Random.Range(1.0f, 2.0f)));
 
             _sequence.Join(transform
-               .DOShakeRotation(Random.Range(0.75f, 1.0f), 10.0f, 10, 15f, true)
+               .DOShakeRotation(Random.Range(0.75f, 1.0f), 10.0f, 10, 15f)
                .SetEase(Ease.InOutSine)
                .SetDelay(Random.Range(1.8f, 2.0f)));
         }   

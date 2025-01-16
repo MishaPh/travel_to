@@ -5,7 +5,6 @@ using Geo.Common.Public.Screens;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Geo.Common.Public.QuizGames
 {
@@ -15,8 +14,8 @@ namespace Geo.Common.Public.QuizGames
 
         private readonly CancellationTokenSource _cancellationTokenSource = new();
 
-        protected readonly IAssetLoader _loader;
-        protected readonly ScreenFactory _screenFactory;
+        protected readonly IAssetLoader Loader;
+        protected readonly ScreenFactory ScreenFactory;
 
         protected abstract IAssetCacheTag CacheTag { get;}
 
@@ -26,8 +25,8 @@ namespace Geo.Common.Public.QuizGames
 
         protected QuizGameBase(IAssetLoader assetLoader, ScreenFactory screenFactory)
         {
-            _loader = assetLoader;
-            _screenFactory = screenFactory;
+            Loader = assetLoader;
+            ScreenFactory = screenFactory;
         }
 
         public async Task LoadAsync()
@@ -75,7 +74,7 @@ namespace Geo.Common.Public.QuizGames
             }
 
             UnityEngine.Object.Destroy(finishScreen.gameObject);
-            _loader.ClearCacheForTags(CacheTag);
+            Loader.ClearCacheForTags(CacheTag);
             Close();
         }
     }

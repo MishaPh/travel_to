@@ -55,11 +55,11 @@ namespace Geo.Common.Public.Screens
                 .DOShakeRotation(0.5f, 20.0f - _timeToEndInt, 10 - _timeToEndInt, 35f, true)
                 .SetEase(Ease.InOutSine);
 
-            if (_timeToEndInt == 0)
-            {
-                StopTimer();
-                OnTimeOut();
-            }
+            if (_timeToEndInt != 0)
+                return;
+            
+            StopTimer();
+            OnTimeOut();
         }
     }
 }
